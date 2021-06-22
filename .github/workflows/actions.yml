@@ -15,5 +15,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install
         run: |
-          curl ipinfo.io/ip
+          curl ifconfig.me
           python3 -m http.server 8000
