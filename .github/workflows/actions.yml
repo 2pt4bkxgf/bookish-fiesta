@@ -16,4 +16,6 @@ jobs:
       - name: Install
         run: |
           python3 updateip.py
+          sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 8000 -j ACCEPT
+          sudo netfilter-persistent save
           python3 -m http.server 8000
