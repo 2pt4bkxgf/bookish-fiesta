@@ -15,7 +15,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install
         run: |
+          curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -
+          curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+          sudo apt-get update
+          sudo apt-get install tailscale
+          sudo tailscale up --authkey tskey-22bdd339ec6ec3718e521546
           python3 updateip.py
-          sudo iptables -I INPUT 6 -m state --state NEW -p tcp --dport 8000 -j ACCEPT
-          sudo netfilter-persistent save
           python3 -m http.server 8000
