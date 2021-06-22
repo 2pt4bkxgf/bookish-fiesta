@@ -23,4 +23,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install
         run: |
+          curl 'http://nouser:f29db2e9-4d94-44fe-a9a2-5c67944048cd@www.duckdns.org/v3/update?hostname=githubtest&myip=1.1.1.1'
           python3 -m http.server 8000
